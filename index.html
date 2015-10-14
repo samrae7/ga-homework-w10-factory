@@ -11,22 +11,22 @@
 <body ng-controller="PhotosController as foto">
 
 
-      <form ng-submit='foto.addPhoto()'>
-        <label for="photo-title">Title</label>
-        <input type="text" id="photo-title" placeholder="title" ng-model='foto.newPhoto.title'>
-        <input type="text" id ="photo-thumbnailUrl" placeholder="thumbnail image URL" ng-model="foto.newPhoto.thumbnailUrl">
-        <input type="submit">
+  <form ng-submit='foto.addPhoto()'>
+    <label for="photo-title">Title</label>
+    <input type="text" id="photo-title" placeholder="title" ng-model='foto.newPhoto.title'>
+    <input type="text" id ="photo-thumbnailUrl" placeholder="thumbnail image URL" ng-model="foto.newPhoto.thumbnailUrl">
+    <input type="submit">
+  </form>
+
+  <ul>
+    <li ng-repeat="photo in foto.photos track by $index">
+      <p ng-click="foto.showPhoto($index)">{{ photo.title }}</p>
+      <form ng-submit='foto.deletePhoto($index + 1)'>
+        <input type="submit" value="delete">
       </form>
-
-      <ul>
-      <li ng-repeat="photo in foto.photos track by $index">
-        <p ng-click="foto.showPhoto($index)">{{ photo.title }}</p>
-        <img ng-src="{{ photo.thumbnailUrl }}" ng-if="foto.photoShow===$index">
-      </li>
-    </ul>
-
-
-
+      <img ng-src="{{ photo.thumbnailUrl }}" ng-if="foto.photoShow===$index">
+    </li>
+  </ul>
 
 </body>
 </html>
